@@ -20,6 +20,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.SystemClock;
 
@@ -53,9 +54,11 @@ public class TextOverlayEffect extends OverlayEffect {
         float width = canvas.getWidth();
         float height = canvas.getHeight();
 
-        // try to choose smallest
-        float scale = (width/defaultWidth < height/defaultHeight) ? width/defaultWidth : height/defaultHeight;
-        canvas.drawBitmap(bitmap, null, new RectF(40, 40, 120 * scale, 120 * scale), paint);
+        // draw a full screen logo in the center
+        Rect src = new Rect(0,0, bitmap.getWidth(), bitmap.getHeight());
+        Rect dest = new Rect(0,(int)(height - width) / 2, (int)width, (int)(height - width) / 2 + (int)width);
+
+        canvas.drawBitmap(bitmap, src, dest, paint);
     }
 
 }

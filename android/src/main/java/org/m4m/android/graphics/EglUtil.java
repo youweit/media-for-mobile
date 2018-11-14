@@ -170,9 +170,7 @@ public class EglUtil implements IEglUtil {
             case PreserveAspectFit:
                 int testAngle = (int) 90;
                 scale = scaleCalculator.getScale_PreserveAspectFit(testAngle, inputResolution.width(), inputResolution.height(), out.width(), out.height());
-                GLES20.glUniformMatrix4fv(program.otMatrixHandle, 1, false, mvpMatrix, 0);
                 Matrix.scaleM(mvpMatrix, 0, scale[0], scale[1], 1);
-//                Matrix.rotateM(mvpMatrix, 0, -testAngle, 0.f, 0.f, 1.f);
 
                 break;
             case PreserveAspectCrop:
